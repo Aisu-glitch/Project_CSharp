@@ -1,5 +1,0 @@
-C:\Users\busia\RiderProjects\WindowsFormsApp1\Project_CSharp\obj\Debug\Project_CSharp.csproj.AssemblyReference.cache
-C:\Users\busia\RiderProjects\WindowsFormsApp1\Project_CSharp\obj\Debug\Project_CSharp.FrmConnect4.resources
-C:\Users\busia\RiderProjects\WindowsFormsApp1\Project_CSharp\obj\Debug\Project_CSharp.Properties.Resources.resources
-C:\Users\busia\RiderProjects\WindowsFormsApp1\Project_CSharp\obj\Debug\Project_CSharp.csproj.GenerateResource.cache
-C:\Users\busia\RiderProjects\WindowsFormsApp1\Project_CSharp\obj\Debug\Project_CSharp.csproj.CoreCompileInputs.cache
