@@ -8,3 +8,13 @@ C:\Users\Aisu\RiderProjects\ProjectGames\ProjectGames\bin\Debug\ProjectGames.exe
 C:\Users\Aisu\RiderProjects\ProjectGames\ProjectGames\bin\Debug\ProjectGames.pdb
 C:\Users\Aisu\RiderProjects\ProjectGames\ProjectGames\obj\Debug\ProjectGames.exe
 C:\Users\Aisu\RiderProjects\ProjectGames\ProjectGames\obj\Debug\ProjectGames.pdb
+C:\Users\Aisu\Documents\00 - School\ProjectGames\ProjectGames\bin\Debug\ProjectGames.exe.config
+C:\Users\Aisu\Documents\00 - School\ProjectGames\ProjectGames\bin\Debug\ProjectGames.exe
+C:\Users\Aisu\Documents\00 - School\ProjectGames\ProjectGames\bin\Debug\ProjectGames.pdb
+C:\Users\Aisu\Documents\00 - School\ProjectGames\ProjectGames\obj\Debug\ProjectGames.csproj.AssemblyReference.cache
+C:\Users\Aisu\Documents\00 - School\ProjectGames\ProjectGames\obj\Debug\ProjectGames.FrmConnect4.resources
+C:\Users\Aisu\Documents\00 - School\ProjectGames\ProjectGames\obj\Debug\ProjectGames.Properties.Resources.resources
+C:\Users\Aisu\Documents\00 - School\ProjectGames\ProjectGames\obj\Debug\ProjectGames.csproj.GenerateResource.cache
+C:\Users\Aisu\Documents\00 - School\ProjectGames\ProjectGames\obj\Debug\ProjectGames.csproj.CoreCompileInputs.cache
+C:\Users\Aisu\Documents\00 - School\ProjectGames\ProjectGames\obj\Debug\ProjectGames.exe
+C:\Users\Aisu\Documents\00 - School\ProjectGames\ProjectGames\obj\Debug\ProjectGames.pdb

@@ -87,8 +87,10 @@ namespace ProjectGames
 	        this.grbSelectie = new System.Windows.Forms.GroupBox();
 	        this.lblWinner = new System.Windows.Forms.Label();
 	        this.btnMenu = new System.Windows.Forms.Button();
+	        this.tmrTimer = new System.Timers.Timer();
 	        this.grbVeld.SuspendLayout();
 	        this.grbSelectie.SuspendLayout();
+	        ((System.ComponentModel.ISupportInitialize) (this.tmrTimer)).BeginInit();
 	        this.SuspendLayout();
 	        // 
 	        // txtX0Y0
@@ -732,7 +734,8 @@ namespace ProjectGames
 	        // 
 	        this.txtBeurt.BackColor = System.Drawing.Color.White;
 	        this.txtBeurt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-	        this.txtBeurt.Location = new System.Drawing.Point(1007, 187);
+	        this.txtBeurt.Enabled = false;
+	        this.txtBeurt.Location = new System.Drawing.Point(449, 31);
 	        this.txtBeurt.Multiline = true;
 	        this.txtBeurt.Name = "txtBeurt";
 	        this.txtBeurt.ReadOnly = true;
@@ -747,12 +750,13 @@ namespace ProjectGames
 	        this.btnStop.FlatAppearance.BorderSize = 0;
 	        this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 	        this.btnStop.ForeColor = System.Drawing.SystemColors.ControlText;
-	        this.btnStop.Location = new System.Drawing.Point(982, 293);
+	        this.btnStop.Location = new System.Drawing.Point(449, 137);
 	        this.btnStop.Name = "btnStop";
-	        this.btnStop.Size = new System.Drawing.Size(75, 23);
+	        this.btnStop.Size = new System.Drawing.Size(50, 23);
 	        this.btnStop.TabIndex = 50;
 	        this.btnStop.Text = "Stop";
 	        this.btnStop.UseVisualStyleBackColor = false;
+	        this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
 	        // 
 	        // btnBegin
 	        // 
@@ -761,12 +765,13 @@ namespace ProjectGames
 	        this.btnBegin.FlatAppearance.BorderSize = 0;
 	        this.btnBegin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 	        this.btnBegin.ForeColor = System.Drawing.SystemColors.ControlText;
-	        this.btnBegin.Location = new System.Drawing.Point(982, 264);
+	        this.btnBegin.Location = new System.Drawing.Point(449, 108);
 	        this.btnBegin.Name = "btnBegin";
-	        this.btnBegin.Size = new System.Drawing.Size(75, 23);
+	        this.btnBegin.Size = new System.Drawing.Size(50, 23);
 	        this.btnBegin.TabIndex = 51;
 	        this.btnBegin.Text = "Begin";
 	        this.btnBegin.UseVisualStyleBackColor = false;
+	        this.btnBegin.Click += new System.EventHandler(this.btnBegin_Click);
 	        // 
 	        // grbVeld
 	        // 
@@ -814,7 +819,7 @@ namespace ProjectGames
 	        this.grbVeld.Controls.Add(this.txtX5Y3);
 	        this.grbVeld.Controls.Add(this.txtX4Y3);
 	        this.grbVeld.ForeColor = System.Drawing.SystemColors.ControlText;
-	        this.grbVeld.Location = new System.Drawing.Point(545, 253);
+	        this.grbVeld.Location = new System.Drawing.Point(12, 97);
 	        this.grbVeld.Name = "grbVeld";
 	        this.grbVeld.Size = new System.Drawing.Size(400, 355);
 	        this.grbVeld.TabIndex = 52;
@@ -830,7 +835,7 @@ namespace ProjectGames
 	        this.grbSelectie.Controls.Add(this.txtX4Y6);
 	        this.grbSelectie.Controls.Add(this.txtX6Y6);
 	        this.grbSelectie.Controls.Add(this.txtX5Y6);
-	        this.grbSelectie.Location = new System.Drawing.Point(545, 168);
+	        this.grbSelectie.Location = new System.Drawing.Point(12, 12);
 	        this.grbSelectie.Name = "grbSelectie";
 	        this.grbSelectie.Size = new System.Drawing.Size(400, 79);
 	        this.grbSelectie.TabIndex = 53;
@@ -840,7 +845,7 @@ namespace ProjectGames
 	        // lblWinner
 	        // 
 	        this.lblWinner.AutoSize = true;
-	        this.lblWinner.Location = new System.Drawing.Point(979, 354);
+	        this.lblWinner.Location = new System.Drawing.Point(446, 198);
 	        this.lblWinner.Name = "lblWinner";
 	        this.lblWinner.Size = new System.Drawing.Size(0, 13);
 	        this.lblWinner.TabIndex = 54;
@@ -851,34 +856,45 @@ namespace ProjectGames
 	        this.btnMenu.FlatAppearance.BorderSize = 0;
 	        this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 	        this.btnMenu.ForeColor = System.Drawing.SystemColors.ControlText;
-	        this.btnMenu.Location = new System.Drawing.Point(982, 585);
+	        this.btnMenu.Location = new System.Drawing.Point(449, 423);
 	        this.btnMenu.Name = "btnMenu";
-	        this.btnMenu.Size = new System.Drawing.Size(75, 23);
+	        this.btnMenu.Size = new System.Drawing.Size(53, 23);
 	        this.btnMenu.TabIndex = 55;
 	        this.btnMenu.Text = "Menu";
 	        this.btnMenu.UseVisualStyleBackColor = false;
 	        this.btnMenu.Visible = false;
 	        // 
+	        // tmrTimer
+	        // 
+	        this.tmrTimer.Interval = 10D;
+	        this.tmrTimer.SynchronizingObject = this;
+	        // 
 	        // FrmConnect4
 	        // 
 	        this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 	        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-	        this.ClientSize = new System.Drawing.Size(1125, 738);
+	        this.BackColor = System.Drawing.SystemColors.MenuHighlight;
+	        this.ClientSize = new System.Drawing.Size(538, 467);
 	        this.Controls.Add(this.btnStop);
 	        this.Controls.Add(this.grbVeld);
 	        this.Controls.Add(this.grbSelectie);
 	        this.Controls.Add(this.lblWinner);
 	        this.Controls.Add(this.btnBegin);
 	        this.Controls.Add(this.btnMenu);
+	        this.Controls.Add(this.txtBeurt);
 	        this.Name = "FrmConnect4";
-	        this.Text = "Form1";
+	        this.Text = "Connect4";
+	        this.Load += new System.EventHandler(this.frm4OpEenRij_Load);
 	        this.grbVeld.ResumeLayout(false);
 	        this.grbVeld.PerformLayout();
 	        this.grbSelectie.ResumeLayout(false);
 	        this.grbSelectie.PerformLayout();
+	        ((System.ComponentModel.ISupportInitialize) (this.tmrTimer)).EndInit();
 	        this.ResumeLayout(false);
 	        this.PerformLayout();
         }
+
+        private System.Timers.Timer tmrTimer;
 
         private System.Windows.Forms.TextBox txtX0Y0;
         private System.Windows.Forms.TextBox txtX1Y0;
@@ -934,7 +950,6 @@ namespace ProjectGames
 	    private System.Windows.Forms.GroupBox grbVeld;
 	    private System.Windows.Forms.GroupBox grbSelectie;
 	    private System.Windows.Forms.Label lblWinner;
-	    private Timer tmrTimer;
 	    private System.Windows.Forms.Button btnBegin;
 	    private System.Windows.Forms.Button btnMenu;
 	    #endregion

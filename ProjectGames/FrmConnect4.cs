@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Security.Cryptography;
 using System.Windows.Forms;
@@ -8,10 +9,15 @@ namespace ProjectGames
 {
     public partial class FrmConnect4 : Form
     {
+        public FrmConnect4()
+        {
+            InitializeComponent();
+        }
+        
         private TextBox _endbox;
         private bool _gameRun;
         private SortedList<string, Graphics> _discs = new SortedList<string, Graphics>();
-        Random _rand = new Random();
+        private Random _rand = new Random();
         
         
         // *** On Load
@@ -19,10 +25,10 @@ namespace ProjectGames
         {
             btnBegin.Click += btnBegin_Click;
             btnStop.Click += btnStop_Click;
-            tmrTimer.Tick += Timer_Timer;
+            tmrTimer.Elapsed += Timer_Timer;
             
-            this.MaximumSize = this.Size;
-            this.MinimumSize = this.Size;
+            MaximumSize = Size;
+            MinimumSize = Size;
             tmrTimer.Enabled = true;
             _gameRun = true;
             foreach (TextBox tb in grbSelectie.Controls)
@@ -111,7 +117,7 @@ namespace ProjectGames
                 {
                     if (!((TextBox) obj is TextBox box)) continue;
                     var tb = box;
-                    if (tb.Name != name + "Y" + System.Convert.ToString(i) || i < int.Parse(tb.Name.Split('Y')[1]) ||
+                    if (tb.Name != name + "Y" + Convert.ToString(i) || i < int.Parse(tb.Name.Split('Y')[1]) ||
                         tb.Text != "") continue;
                     var ystart = -(5 - int.Parse(tb.Name.Split('Y')[1])) * 56;
                     var key = tb.Name + ":Y" + ystart;
@@ -148,7 +154,7 @@ namespace ProjectGames
                 {
                     // *** Check if last field has his disc yet to be centered
                     if (yStart < 0)
-                        tempDiscs.Add(name + ":Y" + yStart + 8, g);
+                        tempDiscs.Add(name + ":Y" + (yStart + 8), g);
                     else
                     {
                         _endbox.BackColor = txtBeurt.BackColor;
@@ -158,7 +164,7 @@ namespace ProjectGames
                 else
                     // *** Check disc is still visible
                 if (yStart <= 50)
-                    tempDiscs.Add(name + ":Y" + yStart + 8, g);
+                    tempDiscs.Add(name + ":Y" + (yStart + 8), g);
             }
 
             // *** Update disc list to only contain the still needing to be animated discs
@@ -171,23 +177,24 @@ namespace ProjectGames
         // *** Begin button
         private void btnBegin_Click(object sender, EventArgs e)
         {
+            btnBegin.Text = @"Restart";
+            TextBox tb;
+
             // *** Turn game progression on
             _gameRun = true;
             // *** Choose randomly what player begins
             
             txtBeurt.BackColor = _rand.Next(2) == 1 ? Color.Red : Color.Yellow;
             // *** Disable / enable appropriate controls
-            btnBegin.Enabled = false;
             btnStop.Enabled = true;
             // *** Reset playing field
-            TextBox tb;
             foreach (object obj in grbSelectie.Controls)
             {
                 if (!(obj is TextBox box)) continue;
                 tb = box;
-                tb.Enabled = true;
-                tb.Tag = "";
                 tb.BackColor = Color.White;
+                tb.Tag = "";
+                tb.Enabled = true;
             }
 
             foreach (object obj in grbVeld.Controls)
@@ -195,6 +202,7 @@ namespace ProjectGames
                 if (!(obj is TextBox box)) continue;
                 tb = box;
                 tb.BackColor = Color.White;
+                tb.Tag = "";
                 tb.Clear();
             }
         }
@@ -202,11 +210,11 @@ namespace ProjectGames
         // *** Stop button
         private void btnStop_Click(object sender, EventArgs e)
         {
+            btnBegin.Text = @"Begin";
             // *** Turn game progression off
             _gameRun = false;
             // *** Disable / enable appropriate controls
             lblWinner.Text = "";
-            btnBegin.Enabled = true;
             btnStop.Enabled = false;
             txtBeurt.BackColor = Color.White;
             foreach (var obj in grbSelectie.Controls)
@@ -396,7 +404,7 @@ namespace ProjectGames
                 }
             }
 
-            // *** Vertical		Check(3,x)
+            // *** Vertical	Check(3,x)
             for (var i = pfy - 3; i <= pfy + 3; i += 1)
             {
                 foreach (object obj in grbVeld.Controls)
@@ -481,7 +489,10 @@ namespace ProjectGames
                 if (count == 7)
                     point = "Draw";
             }
-
+            Debug.WriteLine("point check complete: " + point);
+            
+            
+            
             // *** Return winner
             return point;
         }
