@@ -5,34 +5,29 @@ using System.Drawing;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
-namespace ProjectGames
-{
-    public partial class FrmConnect4 : Form
-    {
-        public FrmConnect4()
-        {
+namespace ProjectGames {
+    public partial class FrmConnect4 : Form {
+        public FrmConnect4() {
             InitializeComponent();
         }
-        
+
         private TextBox _endbox;
         private bool _gameRun;
         private SortedList<string, Graphics> _discs = new SortedList<string, Graphics>();
         private Random _rand = new Random();
-        
-        
+
+
         // *** On Load
-        private void frm4OpEenRij_Load(object sender, EventArgs e)
-        {
+        private void frm4OpEenRij_Load(object sender, EventArgs e) {
             btnBegin.Click += btnBegin_Click;
             btnStop.Click += btnStop_Click;
             tmrTimer.Elapsed += Timer_Timer;
-            
+
             MaximumSize = Size;
             MinimumSize = Size;
             tmrTimer.Enabled = true;
             _gameRun = true;
-            foreach (TextBox tb in grbSelectie.Controls)
-            {
+            foreach (TextBox tb in grbSelectie.Controls) {
                 tb.MouseEnter += grpSelectie_TextBox_MouseEnter;
                 tb.MouseLeave += grpSelectie_TextBox_MouseLeave;
                 tb.MouseClick += grpSelectie_TextBox_MouseClick;
@@ -40,13 +35,10 @@ namespace ProjectGames
 
             // *** Make all playfields round
             var pth = new System.Drawing.Drawing2D.GraphicsPath();
-            foreach (var obj in this.Controls)
-            {
+            foreach (var obj in this.Controls) {
                 Region reg;
-                switch (obj)
-                {
-                    case GroupBox box:
-                    {
+                switch (obj) {
+                    case GroupBox box: {
                         pth.AddEllipse(new Rectangle(0, 0, 50, 50));
                         reg = new Region(pth);
                         GroupBox gb = box;
@@ -59,17 +51,13 @@ namespace ProjectGames
                         reg = new Region(pth);
                         box.Region = reg;
                         break;
-                    case Button button:
-                    {
+                    case Button button: {
                         var bt = button;
-                        if (bt.BackgroundImage != null)
-                        {
+                        if (bt.BackgroundImage != null) {
                             var map = new Bitmap(bt.BackgroundImage, bt.Width - 1, bt.Height - 1);
                             // *** Voor elke pixel
-                            for (var i = 1; i <= map.Width - 1; i++)
-                            {
-                                for (var j = 1; j <= map.Height - 1; j++)
-                                {
+                            for (var i = 1; i <= map.Width - 1; i++) {
+                                for (var j = 1; j <= map.Height - 1; j++) {
                                     // *** Als de pixel leeg is
                                     if (map.GetPixel(i, j) == Color.FromArgb(00, 00, 00, 00))
                                         // *** Teken hem bij de graphische tekening
@@ -96,25 +84,21 @@ namespace ProjectGames
         }
 
         // *** animation step timer
-        private void Timer_Timer(object sender, EventArgs eventArgs)
-        {
+        private void Timer_Timer(object sender, EventArgs eventArgs) {
             // *** Animation trigger
             DropDisc();
         }
 
         // *** Sub To add discs to animation
-        private void AddDisc(object sender)
-        {
+        private void AddDisc(object sender) {
             // *** Clearing Disc list
             _discs.Clear();
             // *** declaration of variables
             string name = ((TextBox) sender).Name.Split('Y')[0];
             _endbox.BackColor = Color.White;
             // *** Get every field in the row and draw an object to start with at the top
-            for (var i = 5; i >= 0; i += -1)
-            {
-                foreach (var obj in grbVeld.Controls)
-                {
+            for (var i = 5; i >= 0; i += -1) {
+                foreach (var obj in grbVeld.Controls) {
                     if (!((TextBox) obj is TextBox box)) continue;
                     var tb = box;
                     if (tb.Name != name + "Y" + Convert.ToString(i) || i < int.Parse(tb.Name.Split('Y')[1]) ||
@@ -128,15 +112,13 @@ namespace ProjectGames
         }
 
         // *** Animation function for discs
-        private void DropDisc()
-        {
+        private void DropDisc() {
             // *** Declaration of the variables
             var tempDiscs = new SortedList<string, Graphics>();
             Brush brush = new SolidBrush(txtBeurt.BackColor);
             var pen = new Pen(Color.White);
             // *** For each disc
-            foreach (var disc in _discs)
-            {
+            foreach (var disc in _discs) {
                 // *** Gather information about the disc
                 var name = disc.Key.Split(':')[0];
                 var key = disc.Key.Split(':')[1];
@@ -150,13 +132,11 @@ namespace ProjectGames
                 g.FillEllipse(brush, size);
 
                 // *** Check if it is the last field
-                if (name == _endbox.Name)
-                {
+                if (name == _endbox.Name) {
                     // *** Check if last field has his disc yet to be centered
                     if (yStart < 0)
                         tempDiscs.Add(name + ":Y" + (yStart + 8), g);
-                    else
-                    {
+                    else {
                         _endbox.BackColor = txtBeurt.BackColor;
                         EndRound(_endbox);
                     }
@@ -175,21 +155,19 @@ namespace ProjectGames
         }
 
         // *** Begin button
-        private void btnBegin_Click(object sender, EventArgs e)
-        {
+        private void btnBegin_Click(object sender, EventArgs e) {
             btnBegin.Text = @"Restart";
             TextBox tb;
 
             // *** Turn game progression on
             _gameRun = true;
             // *** Choose randomly what player begins
-            
+
             txtBeurt.BackColor = _rand.Next(2) == 1 ? Color.Red : Color.Yellow;
             // *** Disable / enable appropriate controls
             btnStop.Enabled = true;
             // *** Reset playing field
-            foreach (object obj in grbSelectie.Controls)
-            {
+            foreach (object obj in grbSelectie.Controls) {
                 if (!(obj is TextBox box)) continue;
                 tb = box;
                 tb.BackColor = Color.White;
@@ -197,8 +175,7 @@ namespace ProjectGames
                 tb.Enabled = true;
             }
 
-            foreach (object obj in grbVeld.Controls)
-            {
+            foreach (object obj in grbVeld.Controls) {
                 if (!(obj is TextBox box)) continue;
                 tb = box;
                 tb.BackColor = Color.White;
@@ -208,8 +185,7 @@ namespace ProjectGames
         }
 
         // *** Stop button
-        private void btnStop_Click(object sender, EventArgs e)
-        {
+        private void btnStop_Click(object sender, EventArgs e) {
             btnBegin.Text = @"Begin";
             // *** Turn game progression off
             _gameRun = false;
@@ -217,16 +193,14 @@ namespace ProjectGames
             lblWinner.Text = "";
             btnStop.Enabled = false;
             txtBeurt.BackColor = Color.White;
-            foreach (var obj in grbSelectie.Controls)
-            {
+            foreach (var obj in grbSelectie.Controls) {
                 if (obj is TextBox box)
                     box.Enabled = false;
             }
         }
 
         // *** Mouse enter playfields
-        private void grpSelectie_TextBox_MouseEnter(object sender, EventArgs e)
-        {
+        private void grpSelectie_TextBox_MouseEnter(object sender, EventArgs e) {
             TextBox localsender = (TextBox) sender;
             // *** Make function only run when game progression is on
             if ((_gameRun == false))
@@ -240,8 +214,7 @@ namespace ProjectGames
         }
 
         // *** Mouse leave playfields
-        private void grpSelectie_TextBox_MouseLeave(object sender, EventArgs e)
-        {
+        private void grpSelectie_TextBox_MouseLeave(object sender, EventArgs e) {
             TextBox localsender = (TextBox) sender;
             // *** Search for preview
             var tb = GetHighestPlayerField(localsender);
@@ -253,8 +226,7 @@ namespace ProjectGames
         }
 
         // *** Mouse click playfields
-        private void grpSelectie_TextBox_MouseClick(object sender, EventArgs e)
-        {
+        private void grpSelectie_TextBox_MouseClick(object sender, EventArgs e) {
             TextBox localsender = (TextBox) sender;
             // *** If the clicked field is white, cancel
             if (localsender.BackColor == Color.White)
@@ -275,15 +247,12 @@ namespace ProjectGames
         }
 
         // *** Gettingthe lowest empty field
-        private TextBox GetLowestEmptyField(TextBox beginbox)
-        {
+        private TextBox GetLowestEmptyField(TextBox beginbox) {
             // *** Create verifaction data
             var name = beginbox.Name.Split("Y".ToCharArray())[0];
             // *** Check all fields in a row and return the lowest not verified field
-            for (var i = 0; i <= 5; i += 1)
-            {
-                foreach (Control tb in grbVeld.Controls)
-                {
+            for (var i = 0; i <= 5; i += 1) {
+                foreach (Control tb in grbVeld.Controls) {
                     if (!(tb is TextBox box)) continue;
                     if (box.Name == name + "Y" + Convert.ToString(i) &&
                         box.BackColor == Color.White && box.Name != " ")
@@ -295,15 +264,12 @@ namespace ProjectGames
         }
 
         // *** Getting highest played field
-        private TextBox GetHighestPlayerField(TextBox beginbox)
-        {
+        private TextBox GetHighestPlayerField(TextBox beginbox) {
             // *** Declaration of variables
             var name = beginbox.Name.Split('Y')[0];
             // *** Find the last player field (This is a preview)
-            for (var i = 5; i >= 0; i += -1)
-            {
-                foreach (object obj in grbVeld.Controls)
-                {
+            for (var i = 5; i >= 0; i += -1) {
+                foreach (object obj in grbVeld.Controls) {
                     if (!(obj is TextBox box)) continue;
                     if (box.BackColor == Color.YellowGreen |
                         box.BackColor == Color.OrangeRed &&
@@ -317,36 +283,30 @@ namespace ProjectGames
         }
 
         // *** Endround
-        private void EndRound(TextBox playedField)
-        {
+        private void EndRound(TextBox playedField) {
             // *** Declaration of winner variable
             var strPoint = PointCheck(playedField);
             // *** Get sender
             var sender = new TextBox();
-            foreach (TextBox tb in grbSelectie.Controls)
-            {
+            foreach (TextBox tb in grbSelectie.Controls) {
                 tb.Enabled = true;
                 if (tb.Name.Split("Y".ToCharArray())[0] == playedField.Name.Split("Y".ToCharArray())[0])
                     sender = tb;
             }
 
-            switch (strPoint)
-            {
+            switch (strPoint) {
                 // *** Check who made a point, if no-one skip to next round
-                case "No Point":
-                {
+                case "No Point": {
                     // *** Switch player color
                     RoleSwap();
                     foreach (TextBox tb in grbSelectie.Controls)
                         tb.Enabled = true;
                     return;
                 }
-                case "Draw":
-                {
+                case "Draw": {
                     _gameRun = false;
                     // *** Empty all selection controls
-                    foreach (TextBox tb in grbSelectie.Controls)
-                    {
+                    foreach (TextBox tb in grbSelectie.Controls) {
                         tb.Clear();
                         tb.Enabled = false;
                     }
@@ -361,8 +321,7 @@ namespace ProjectGames
 
             _gameRun = false;
             // *** Empty all selection controls
-            foreach (TextBox tb in grbSelectie.Controls)
-            {
+            foreach (TextBox tb in grbSelectie.Controls) {
                 tb.Clear();
                 tb.Enabled = false;
             }
@@ -374,8 +333,7 @@ namespace ProjectGames
         }
 
         // *** Pointcheck
-        private string PointCheck(TextBox playedField)
-        {
+        private string PointCheck(TextBox playedField) {
             // *** Make variables to manage coördinates or points
             var point = "No Point";
             string pfCoords = playedField.Name.Split("X".ToCharArray())[1];
@@ -386,10 +344,8 @@ namespace ProjectGames
             string[,] check = new string[4, 7];
             TextBox tb;
             // *** Build Checklist for all directions
-            for (var i = pfx - 3; i <= pfx + 3; i += 1)
-            {
-                foreach (var obj in grbVeld.Controls)
-                {
+            for (var i = pfx - 3; i <= pfx + 3; i += 1) {
+                foreach (var obj in grbVeld.Controls) {
                     if (!(obj is TextBox box)) continue;
                     tb = box;
                     // *** Horizontal		Check(0,x)
@@ -405,10 +361,8 @@ namespace ProjectGames
             }
 
             // *** Vertical	Check(3,x)
-            for (var i = pfy - 3; i <= pfy + 3; i += 1)
-            {
-                foreach (object obj in grbVeld.Controls)
-                {
+            for (var i = pfy - 3; i <= pfy + 3; i += 1) {
+                foreach (object obj in grbVeld.Controls) {
                     if (!(obj is TextBox box)) continue;
                     tb = box;
                     if (tb.Name == pfNameY + Convert.ToString(i))
@@ -421,24 +375,19 @@ namespace ProjectGames
             var count = 0;
             var winner = new string[7];
             // *** Check all checklists if a player has won
-            for (var i = 0; i <= 3; i += 1)
-            {
-                for (var j = 0; j <= 6; j += 1)
-                {
-                    foreach (var obj in grbVeld.Controls)
-                    {
+            for (var i = 0; i <= 3; i += 1) {
+                for (var j = 0; j <= 6; j += 1) {
+                    foreach (var obj in grbVeld.Controls) {
                         if (!(obj is TextBox box)) continue;
                         tb = box;
                         if (tb.Name != check[i, j]) continue;
                         // *** Check if the played field has the same color as the player
-                        if (tb.BackColor == curColor)
-                        {
+                        if (tb.BackColor == curColor) {
                             // *** Add field to point count, point + 1
                             winner[count] = tb.Name;
                             count += 1;
                         }
-                        else
-                        {
+                        else {
                             // *** Reset point count to 0
                             count = 0;
                         }
@@ -446,10 +395,8 @@ namespace ProjectGames
                         // *** If 4 or more points are made, mark them
                         if (count < 4) continue;
                         // *** Mark all point containing fields
-                        for (var k = 0; k <= count - 1; k += 1)
-                        {
-                            foreach (var ob in grbVeld.Controls)
-                            {
+                        for (var k = 0; k <= count - 1; k += 1) {
+                            foreach (var ob in grbVeld.Controls) {
                                 if (!(ob is TextBox textBox)) continue;
                                 tb = textBox;
                                 if (tb.Name == winner[k])
@@ -466,8 +413,7 @@ namespace ProjectGames
             }
 
             // *** color all the winning fields
-            foreach (var obj in grbVeld.Controls)
-            {
+            foreach (var obj in grbVeld.Controls) {
                 if (!(obj is TextBox box)) continue;
                 tb = box;
                 if ((string) tb.Tag == "1")
@@ -476,12 +422,10 @@ namespace ProjectGames
 
             if ((point != "No Point")) return point;
             {
-                foreach (var obj in grbVeld.Controls)
-                {
+                foreach (var obj in grbVeld.Controls) {
                     if (!(obj is TextBox box)) continue;
                     tb = box;
-                    if (int.Parse(tb.Name.Split("Y".ToCharArray())[1]) == 5 & tb.BackColor != Color.White)
-                    {
+                    if (int.Parse(tb.Name.Split("Y".ToCharArray())[1]) == 5 & tb.BackColor != Color.White) {
                         count += 1;
                     }
                 }
@@ -490,16 +434,14 @@ namespace ProjectGames
                     point = "Draw";
             }
             Debug.WriteLine("point check complete: " + point);
-            
-            
-            
+
+
             // *** Return winner
             return point;
         }
 
         // *** Role swap
-        private void RoleSwap()
-        {
+        private void RoleSwap() {
             // *** Change current active player
             txtBeurt.BackColor = txtBeurt.BackColor == Color.Yellow ? Color.Red : Color.Yellow;
         }
