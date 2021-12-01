@@ -39,7 +39,7 @@ namespace ProjectGames {
             this.grbSpeler1.TabIndex = 0;
             this.grbSpeler1.TabStop = false;
             // 
-            // Don_t_get_angry
+            // ManDonTGetAngry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -51,10 +51,6 @@ namespace ProjectGames {
         }
 
         private System.Windows.Forms.GroupBox grbSpeler1;
-
-        private System.Windows.Forms.GroupBox grb;
-
-        private System.Windows.Forms.GroupBox gpb;
 
         #endregion
     }

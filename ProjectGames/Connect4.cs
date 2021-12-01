@@ -90,13 +90,13 @@ namespace ProjectGames {
         #endregion
 
         #region Disc Functions
-        
+
         // *** animation step timer
         private void Timer_Timer(object sender, EventArgs eventArgs) {
             // *** Animation trigger
             DropDisc();
         }
-        
+
         // *** Sub To add discs to animation
         private void AddDisc(object sender) {
             // *** Clearing Disc list
@@ -320,7 +320,7 @@ namespace ProjectGames {
         #region EndTurn Functions
 
         // *** Endround
-        
+
         private void EndRound(TextBox playedField) {
             // *** Declaration of winner variable
             var strPoint = PointCheck(playedField);
@@ -520,6 +520,23 @@ namespace ProjectGames {
         }
 
         #endregion
-       
+
+        #region menu Function
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e) {
+            this.Close();
+        }
+
+        private void mnuGameManDontGetAngry_Click(object sender, EventArgs e) {
+            this.Hide();
+            Form mdga = new ManDonTGetAngry();
+            mdga.Location = this.Location;
+            mdga.StartPosition = FormStartPosition.Manual;
+            mdga.FormClosing += delegate { this.Show(); };
+            mdga.Show();
+            this.Hide();
+        }
+
+        #endregion
     }
 }

@@ -29,8 +29,7 @@ namespace ProjectGames
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
 	        this.txtX0Y0 = new System.Windows.Forms.TextBox();
 	        this.txtX1Y0 = new System.Windows.Forms.TextBox();
 	        this.txtX2Y0 = new System.Windows.Forms.TextBox();
@@ -88,9 +87,16 @@ namespace ProjectGames
 	        this.lblWinner = new System.Windows.Forms.Label();
 	        this.btnMenu = new System.Windows.Forms.Button();
 	        this.tmrTimer = new System.Timers.Timer();
+	        this.mnuMain = new System.Windows.Forms.MenuStrip();
+	        this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
+	        this.mnuFileClose = new System.Windows.Forms.ToolStripMenuItem();
+	        this.mnuGames = new System.Windows.Forms.ToolStripMenuItem();
+	        this.mnuGameConnect4 = new System.Windows.Forms.ToolStripMenuItem();
+	        this.mnuGameManDontGetAngry = new System.Windows.Forms.ToolStripMenuItem();
 	        this.grbVeld.SuspendLayout();
 	        this.grbSelectie.SuspendLayout();
 	        ((System.ComponentModel.ISupportInitialize) (this.tmrTimer)).BeginInit();
+	        this.mnuMain.SuspendLayout();
 	        this.SuspendLayout();
 	        // 
 	        // txtX0Y0
@@ -735,7 +741,7 @@ namespace ProjectGames
 	        this.txtBeurt.BackColor = System.Drawing.Color.White;
 	        this.txtBeurt.BorderStyle = System.Windows.Forms.BorderStyle.None;
 	        this.txtBeurt.Enabled = false;
-	        this.txtBeurt.Location = new System.Drawing.Point(449, 31);
+	        this.txtBeurt.Location = new System.Drawing.Point(449, 56);
 	        this.txtBeurt.Multiline = true;
 	        this.txtBeurt.Name = "txtBeurt";
 	        this.txtBeurt.ReadOnly = true;
@@ -750,7 +756,7 @@ namespace ProjectGames
 	        this.btnStop.FlatAppearance.BorderSize = 0;
 	        this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 	        this.btnStop.ForeColor = System.Drawing.SystemColors.ControlText;
-	        this.btnStop.Location = new System.Drawing.Point(449, 137);
+	        this.btnStop.Location = new System.Drawing.Point(449, 162);
 	        this.btnStop.Name = "btnStop";
 	        this.btnStop.Size = new System.Drawing.Size(50, 23);
 	        this.btnStop.TabIndex = 50;
@@ -765,7 +771,7 @@ namespace ProjectGames
 	        this.btnBegin.FlatAppearance.BorderSize = 0;
 	        this.btnBegin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 	        this.btnBegin.ForeColor = System.Drawing.SystemColors.ControlText;
-	        this.btnBegin.Location = new System.Drawing.Point(449, 108);
+	        this.btnBegin.Location = new System.Drawing.Point(449, 133);
 	        this.btnBegin.Name = "btnBegin";
 	        this.btnBegin.Size = new System.Drawing.Size(50, 23);
 	        this.btnBegin.TabIndex = 51;
@@ -819,7 +825,7 @@ namespace ProjectGames
 	        this.grbVeld.Controls.Add(this.txtX5Y3);
 	        this.grbVeld.Controls.Add(this.txtX4Y3);
 	        this.grbVeld.ForeColor = System.Drawing.SystemColors.ControlText;
-	        this.grbVeld.Location = new System.Drawing.Point(12, 97);
+	        this.grbVeld.Location = new System.Drawing.Point(12, 122);
 	        this.grbVeld.Name = "grbVeld";
 	        this.grbVeld.Size = new System.Drawing.Size(400, 355);
 	        this.grbVeld.TabIndex = 52;
@@ -835,7 +841,7 @@ namespace ProjectGames
 	        this.grbSelectie.Controls.Add(this.txtX4Y6);
 	        this.grbSelectie.Controls.Add(this.txtX6Y6);
 	        this.grbSelectie.Controls.Add(this.txtX5Y6);
-	        this.grbSelectie.Location = new System.Drawing.Point(12, 12);
+	        this.grbSelectie.Location = new System.Drawing.Point(12, 37);
 	        this.grbSelectie.Name = "grbSelectie";
 	        this.grbSelectie.Size = new System.Drawing.Size(400, 79);
 	        this.grbSelectie.TabIndex = 53;
@@ -845,7 +851,7 @@ namespace ProjectGames
 	        // lblWinner
 	        // 
 	        this.lblWinner.AutoSize = true;
-	        this.lblWinner.Location = new System.Drawing.Point(446, 198);
+	        this.lblWinner.Location = new System.Drawing.Point(446, 223);
 	        this.lblWinner.Name = "lblWinner";
 	        this.lblWinner.Size = new System.Drawing.Size(0, 13);
 	        this.lblWinner.TabIndex = 54;
@@ -856,7 +862,7 @@ namespace ProjectGames
 	        this.btnMenu.FlatAppearance.BorderSize = 0;
 	        this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 	        this.btnMenu.ForeColor = System.Drawing.SystemColors.ControlText;
-	        this.btnMenu.Location = new System.Drawing.Point(449, 423);
+	        this.btnMenu.Location = new System.Drawing.Point(449, 448);
 	        this.btnMenu.Name = "btnMenu";
 	        this.btnMenu.Size = new System.Drawing.Size(53, 23);
 	        this.btnMenu.TabIndex = 55;
@@ -869,12 +875,55 @@ namespace ProjectGames
 	        this.tmrTimer.Interval = 10D;
 	        this.tmrTimer.SynchronizingObject = this;
 	        // 
+	        // mnuMain
+	        // 
+	        this.mnuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.mnuFile, this.mnuGames});
+	        this.mnuMain.Location = new System.Drawing.Point(0, 0);
+	        this.mnuMain.Name = "mnuMain";
+	        this.mnuMain.Size = new System.Drawing.Size(538, 24);
+	        this.mnuMain.TabIndex = 49;
+	        this.mnuMain.Text = "menuStrip1";
+	        // 
+	        // mnuFile
+	        // 
+	        this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.mnuFileClose});
+	        this.mnuFile.Name = "mnuFile";
+	        this.mnuFile.Size = new System.Drawing.Size(37, 20);
+	        this.mnuFile.Text = "File";
+	        // 
+	        // mnuFileClose
+	        // 
+	        this.mnuFileClose.Name = "mnuFileClose";
+	        this.mnuFileClose.Size = new System.Drawing.Size(103, 22);
+	        this.mnuFileClose.Text = "Close";
+	        this.mnuFileClose.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+	        // 
+	        // mnuGames
+	        // 
+	        this.mnuGames.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.mnuGameConnect4, this.mnuGameManDontGetAngry});
+	        this.mnuGames.Name = "mnuGames";
+	        this.mnuGames.Size = new System.Drawing.Size(55, 20);
+	        this.mnuGames.Text = "Games";
+	        // 
+	        // mnuGameConnect4
+	        // 
+	        this.mnuGameConnect4.Name = "mnuGameConnect4";
+	        this.mnuGameConnect4.Size = new System.Drawing.Size(186, 22);
+	        this.mnuGameConnect4.Text = "Connect 4";
+	        // 
+	        // mnuGameManDontGetAngry
+	        // 
+	        this.mnuGameManDontGetAngry.Name = "mnuGameManDontGetAngry";
+	        this.mnuGameManDontGetAngry.Size = new System.Drawing.Size(186, 22);
+	        this.mnuGameManDontGetAngry.Text = "Man, Dont get angry.";
+	        this.mnuGameManDontGetAngry.Click += new System.EventHandler(this.mnuGameManDontGetAngry_Click);
+	        // 
 	        // FrmConnect4
 	        // 
 	        this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 	        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 	        this.BackColor = System.Drawing.SystemColors.MenuHighlight;
-	        this.ClientSize = new System.Drawing.Size(538, 467);
+	        this.ClientSize = new System.Drawing.Size(538, 489);
 	        this.Controls.Add(this.btnStop);
 	        this.Controls.Add(this.grbVeld);
 	        this.Controls.Add(this.grbSelectie);
@@ -882,6 +931,8 @@ namespace ProjectGames
 	        this.Controls.Add(this.btnBegin);
 	        this.Controls.Add(this.btnMenu);
 	        this.Controls.Add(this.txtBeurt);
+	        this.Controls.Add(this.mnuMain);
+	        this.MainMenuStrip = this.mnuMain;
 	        this.Name = "FrmConnect4";
 	        this.Text = "Connect4";
 	        this.Load += new System.EventHandler(this.frm4OpEenRij_Load);
@@ -890,9 +941,19 @@ namespace ProjectGames
 	        this.grbSelectie.ResumeLayout(false);
 	        this.grbSelectie.PerformLayout();
 	        ((System.ComponentModel.ISupportInitialize) (this.tmrTimer)).EndInit();
+	        this.mnuMain.ResumeLayout(false);
+	        this.mnuMain.PerformLayout();
 	        this.ResumeLayout(false);
 	        this.PerformLayout();
         }
+
+
+        private System.Windows.Forms.MenuStrip mnuMain;
+        private System.Windows.Forms.ToolStripMenuItem mnuGames;
+        private System.Windows.Forms.ToolStripMenuItem mnuGameConnect4;
+        private System.Windows.Forms.ToolStripMenuItem mnuGameManDontGetAngry;
+        private System.Windows.Forms.ToolStripMenuItem mnuFile;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileClose;
 
         private System.Timers.Timer tmrTimer;
 
