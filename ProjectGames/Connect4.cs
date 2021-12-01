@@ -7,14 +7,16 @@ using System.Windows.Forms;
 
 namespace ProjectGames {
     public partial class FrmConnect4 : Form {
+        #region Initialization Functions
+
         public FrmConnect4() {
             InitializeComponent();
         }
 
         private TextBox _endbox;
         private bool _gameRun;
-        private SortedList<string, Graphics> _discs = new SortedList<string, Graphics>();
-        private Random _rand = new Random();
+        private readonly SortedList<string, Graphics> _discs = new SortedList<string, Graphics>();
+        private readonly Random _rand = new Random();
 
         // *** On Load
         private void frm4OpEenRij_Load(object sender, EventArgs e) {
@@ -54,12 +56,12 @@ namespace ProjectGames {
                         var bt = button;
                         if (bt.BackgroundImage != null) {
                             var map = new Bitmap(bt.BackgroundImage, bt.Width - 1, bt.Height - 1);
-                            // *** Voor elke pixel
+                            // *** For every pixel
                             for (var i = 1; i <= map.Width - 1; i++) {
                                 for (var j = 1; j <= map.Height - 1; j++) {
-                                    // *** Als de pixel leeg is
+                                    // *** If pixel = empty
                                     if (map.GetPixel(i, j) == Color.FromArgb(00, 00, 00, 00)) {
-                                        // *** Teken hem bij de graphische tekening
+                                        // *** Add pixel to hitbox
                                         pth.AddRectangle(new Rectangle(i, j, 1, 1));
                                     }
                                 }
@@ -85,12 +87,16 @@ namespace ProjectGames {
             RandomNumberGenerator.Create();
         }
 
+        #endregion
+
+        #region Disc Functions
+        
         // *** animation step timer
         private void Timer_Timer(object sender, EventArgs eventArgs) {
             // *** Animation trigger
             DropDisc();
         }
-
+        
         // *** Sub To add discs to animation
         private void AddDisc(object sender) {
             // *** Clearing Disc list
@@ -158,6 +164,10 @@ namespace ProjectGames {
             tempDiscs.Clear();
         }
 
+        #endregion
+
+        #region Button Functoins
+
         // *** Begin button
         private void btnBegin_Click(object sender, EventArgs e) {
             btnBegin.Text = @"Restart";
@@ -202,6 +212,10 @@ namespace ProjectGames {
                     box.Enabled = false;
             }
         }
+
+        #endregion
+
+        #region Playfield Functions
 
         // *** Mouse enter playfields
         private void grpSelectie_TextBox_MouseEnter(object sender, EventArgs e) {
@@ -263,7 +277,7 @@ namespace ProjectGames {
         // *** Gettingthe lowest empty field
         private TextBox GetLowestEmptyField(TextBox beginbox) {
             // *** Create verifaction data
-            var name = beginbox.Name.Split("Y".ToCharArray())[0];
+            var name = beginbox.Name.Split('Y')[0];
             // *** Check all fields in a row and return the lowest not verified field
             for (var i = 0; i <= 5; i += 1) {
                 foreach (Control tb in grbVeld.Controls) {
@@ -301,7 +315,12 @@ namespace ProjectGames {
             return beginbox;
         }
 
+        #endregion
+
+        #region EndTurn Functions
+
         // *** Endround
+        
         private void EndRound(TextBox playedField) {
             // *** Declaration of winner variable
             var strPoint = PointCheck(playedField);
@@ -309,7 +328,7 @@ namespace ProjectGames {
             var sender = new TextBox();
             foreach (TextBox tb in grbSelectie.Controls) {
                 tb.Enabled = true;
-                if (tb.Name.Split("Y".ToCharArray())[0] == playedField.Name.Split("Y".ToCharArray())[0]) {
+                if (tb.Name.Split('Y')[0] == playedField.Name.Split('Y')[0]) {
                     sender = tb;
                 }
             }
@@ -358,11 +377,11 @@ namespace ProjectGames {
         private string PointCheck(TextBox playedField) {
             // *** Make variables to manage coördinates or points
             var point = "No Point";
-            string pfCoords = playedField.Name.Split("X".ToCharArray())[1];
-            var pfNameX = playedField.Name.Split("X".ToCharArray())[0] + "X";
-            var pfNameY = playedField.Name.Split("Y".ToCharArray())[0] + "Y";
-            var pfx = Convert.ToInt32(pfCoords.Split("Y".ToCharArray())[0]);
-            var pfy = Convert.ToInt32(pfCoords.Split("Y".ToCharArray())[1]);
+            string pfCoords = playedField.Name.Split('X')[1];
+            var pfNameX = playedField.Name.Split('X')[0] + "X";
+            var pfNameY = playedField.Name.Split('Y')[0] + "Y";
+            var pfx = Convert.ToInt32(pfCoords.Split('Y')[0]);
+            var pfy = Convert.ToInt32(pfCoords.Split('Y')[1]);
             string[,] check = new string[4, 7];
             TextBox tb;
             // *** Build Checklist for all directions
@@ -480,7 +499,7 @@ namespace ProjectGames {
                 }
 
                 tb = box;
-                if (int.Parse(tb.Name.Split("Y".ToCharArray())[1]) == 5 & tb.BackColor != Color.White) {
+                if (int.Parse(tb.Name.Split('Y')[1]) == 5 & tb.BackColor != Color.White) {
                     count += 1;
                 }
             }
@@ -499,5 +518,8 @@ namespace ProjectGames {
             // *** Change current active player
             txtBeurt.BackColor = txtBeurt.BackColor == Color.Yellow ? Color.Red : Color.Yellow;
         }
+
+        #endregion
+       
     }
 }

@@ -46,13 +46,20 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="FrmConnect4.cs" />
-        <Compile Include="FrmConnect4.Designer.cs" />
+        <Compile Include="ManDontGetAngry.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="ManDontGetAngry.Designer.cs">
+          <DependentUpon>ManDontGetAngry.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Connect4.cs" />
+        <Compile Include="Connect4.Designer.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="test.cs" />
-        <Compile Include="test.Designer.cs" />
-        <EmbeddedResource Include="FrmConnect4.resx" />
+        <EmbeddedResource Include="Connect4.resx" />
+        <EmbeddedResource Include="ManDontGetAngry.resx">
+          <DependentUpon>ManDontGetAngry.cs</DependentUpon>
+        </EmbeddedResource>
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
