@@ -919,9 +919,11 @@ namespace ProjectGames
 	        this.mnuGameManDontGetAngry.Click += new System.EventHandler(this.mnuGameManDontGetAngry_Click);
 	        // 
 	        // FrmConnect4
-	        // 
+	        //
+	        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+	        this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 	        this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-	        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+	        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 	        this.BackColor = System.Drawing.SystemColors.MenuHighlight;
 	        this.ClientSize = new System.Drawing.Size(538, 489);
 	        this.Controls.Add(this.btnStop);
