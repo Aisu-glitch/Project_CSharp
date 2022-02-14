@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace ProjectGames
 {
-    public partial class frmConnect4 : Form
+    public partial class FrmConnect4 : Form
     {
         #region Initialization Functions
 
-        public frmConnect4()
+        public FrmConnect4()
         {
             InitializeComponent();
         }
