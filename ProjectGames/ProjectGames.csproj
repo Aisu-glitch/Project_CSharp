@@ -49,19 +49,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connect4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Connect4.Designer.cs">
+      <DependentUpon>Connect4.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManDontGetAngry.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ManDontGetAngry.Designer.cs">
       <DependentUpon>ManDontGetAngry.cs</DependentUpon>
     </Compile>
-    <Compile Include="Connect4.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Connect4.Designer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Connect4.resx" />
+    <EmbeddedResource Include="Connect4.resx">
+      <DependentUpon>Connect4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ManDontGetAngry.resx">
       <DependentUpon>ManDontGetAngry.cs</DependentUpon>
     </EmbeddedResource>
