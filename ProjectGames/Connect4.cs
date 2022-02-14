@@ -538,5 +538,10 @@ namespace ProjectGames {
         }
 
         #endregion
+
+        private void FrmConnect4_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
